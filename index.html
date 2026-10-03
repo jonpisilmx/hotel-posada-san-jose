@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posada San José Hotel | Pochutla, Oaxaca</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        warm: {
+                            50: '#FAF8F5',
+                            100: '#F5EFE6',
+                            200: '#E8DEC9',
+                            600: '#8C7A6B',
+                            800: '#4A3E3D',
+                            900: '#2C221E',
+                        },
+                        accent: {
+                            whatsapp: '#25D366',
+                            instagram: '#E1306C'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-warm-50 text-warm-900 font-sans pb-20 md:pb-0">
+
+    <!-- BARRA SUPERIOR FIJA -->
+    <header class="sticky top-0 z-50 bg-warm-50/90 backdrop-blur-md border-b border-warm-200">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo + Nombre -->
+            <a href="#" class="flex items-center gap-3">
+                <img src="https://i.ibb.co/k6Df0gq3/logochigo.png" alt="Posada San José Logo" class="h-10 w-auto">
+                <span class="font-serif font-bold text-lg text-warm-900 tracking-tight hidden sm:inline">Posada San José</span>
+            </a>
+
+            <!-- Acciones Rápidas Header -->
+            <div class="flex items-center gap-3">
+                <!-- Selector de Idioma -->
+                <button onclick="toggleLanguage()" class="flex items-center gap-1.5 px-3 py-1.5 border border-warm-600 rounded-full text-xs font-semibold hover:bg-warm-100 transition">
+                    <i class="fa-solid fa-globe text-warm-600"></i>
+                    <span id="lang-btn-text">English</span>
+                </button>
+
+                <!-- Instagram Fijo Header -->
+                <a href="https://www.instagram.com/posadasanjosehotel" target="_blank" rel="noopener" class="text-accent-instagram text-xl p-1 hover:scale-110 transition" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <!-- Google Maps Cómo Llegar -->
+                <a href="https://maps.google.com/?q=Posada+San+Jose+Pochutla" target="_blank" rel="noopener" class="bg-warm-900 text-warm-50 px-3.5 py-1.5 rounded-full text-xs font-medium flex items-center gap-1.5 hover:bg-warm-800 transition shadow-sm">
+                    <i class="fa-solid fa-location-dot text-xs"></i>
+                    <span data-es="Cómo llegar" data-en="Directions">Cómo llegar</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECCIÓN HERO OSCURA CON IMAGEN ALEATORIA DE FONDO -->
+    <section class="relative bg-warm-900 text-white min-h-[380px] md:min-h-[460px] flex items-center justify-center overflow-hidden">
+        <!-- Imagen de Fondo Hero con selección aleatoria -->
+        <img id="hero-bg-img" src="https://i.ibb.co/C5vbVxLn/250823539.jpg" alt="Posada San José Hotel" class="absolute inset-0 w-full h-full object-cover object-center opacity-40 transition-opacity duration-500">
+        <div class="absolute inset-0 bg-gradient-to-t from-warm-900 via-warm-900/60 to-transparent"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center space-y-4 py-12">
+            <span class="inline-block bg-warm-100 text-warm-900 text-xs font-bold px-3.5 py-1 rounded-full uppercase tracking-widest shadow-sm"
+                  data-es="Pochutla, Oaxaca" data-en="Pochutla, Oaxaca">
+                Pochutla, Oaxaca
+            </span>
+            <h1 class="text-3xl md:text-5xl font-serif font-bold leading-tight drop-shadow-md text-white"
+                data-es="Posada San José Hotel" data-en="Posada San José Hotel">
+                Posada San José Hotel
+            </h1>
+            <p class="text-warm-100 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-sm"
+               data-es="Tu descanso seguro y cómodo al mejor precio. Ideal para noches de paso o estadías de trabajo en San Pedro Pochutla."
+               data-en="Your safe and comfortable stay at the best price. Ideal for layovers or work stays in San Pedro Pochutla.">
+                Tu descanso seguro y cómodo al mejor precio. Ideal para noches de paso o estadías de trabajo en San Pedro Pochutla.
+            </p>
+
+            <div class="pt-2 flex flex-wrap justify-center gap-3">
+                <a href="#reservar" class="bg-accent-whatsapp hover:opacity-90 text-white font-bold px-6 py-3 rounded-full text-sm shadow-lg flex items-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span data-es="Reservar por WhatsApp" data-en="Book via WhatsApp">Reservar por WhatsApp</span>
+                </a>
+                <button onclick="getUserLocation()" class="bg-white/20 backdrop-blur-md hover:bg-white/30 text-white font-semibold px-5 py-3 rounded-full text-sm border border-white/30 flex items-center gap-2 transition">
+                    <i class="fa-solid fa-location-crosshairs text-warm-200"></i>
+                    <span data-es="Calcular Distancia" data-en="Calculate Distance">Calcular Distancia</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MÓDULO INTERACTIVO DE LOCALIZACIÓN EN TIEMPO REAL -->
+    <section class="max-w-6xl mx-auto px-4 -mt-8 relative z-20">
+        <div class="bg-white rounded-2xl border border-warm-200 p-5 shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3 w-full md:w-auto">
+                <div class="w-12 h-12 rounded-full bg-warm-100 text-warm-900 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-person-walking text-warm-600"></i>
+                </div>
+                <div>
+                    <div class="text-xs font-bold text-warm-600 uppercase tracking-wider" data-es="Tu Ubicación en Vivo" data-en="Your Live Location">Tu Ubicación en Vivo</div>
+                    <div id="location-status" class="text-sm font-semibold text-warm-900" data-es="Pulsa el botón para saber qué tan cerca estás del hotel" data-en="Click the button to see how close you are">
+                        Pulsa para calcular tu distancia y tiempo al hotel
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones de Acción de Ubicación -->
+            <div class="flex items-center gap-2 w-full md:w-auto justify-end">
+                <button onclick="getUserLocation()" class="bg-warm-100 hover:bg-warm-200 text-warm-900 px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 border border-warm-200">
+                    <i class="fa-solid fa-crosshairs text-warm-600"></i>
+                    <span data-es="Obtener Ubicación" data-en="Get Location">Obtener Ubicación</span>
+                </button>
+
+                <a id="gmaps-nav-btn" href="https://www.google.com/maps/dir/?api=1&destination=15.7441,-96.4674" target="_blank" rel="noopener" class="bg-warm-900 hover:bg-warm-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-diamond-turn-right text-accent-whatsapp"></i>
+                    <span data-es="Iniciar Recorrido" data-en="Start Navigation">Iniciar Recorrido</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENIDO PRINCIPAL / FORMULARIO -->
+    <section id="reservar" class="py-10 px-4 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            
+            <!-- Texto y Módulo Interactivo de Precios -->
+            <div class="md:col-span-7 space-y-4">
+                <span class="inline-block bg-warm-200 text-warm-900 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider"
+                      data-es="El mejor costo-beneficio en Pochutla" data-en="Best value stay in Pochutla">
+                    El mejor costo-beneficio en Pochutla
+                </span>
+                <h2 class="text-2xl md:text-4xl font-serif font-bold leading-tight text-warm-900" 
+                    data-es="Seguridad, descanso y la mejor conectividad" 
+                    data-en="Safety, rest & ideal connectivity">
+                    Seguridad, descanso y la mejor conectividad
+                </h2>
+                <p class="text-warm-800 text-sm md:text-base leading-relaxed"
+                   data-es="Ideal para tu noche de paso hacia las playas o estancias cortas. Comodidad e instalaciones diseñadas para tu tranquilidad."
+                   data-en="Ideal for an overnight stay on your way to the coast or short visits. Comfort and facilities designed for your peace of mind.">
+                    Ideal para tu noche de paso hacia las playas o estancias cortas. Comodidad e instalaciones diseñadas para tu tranquilidad.
+                </p>
+
+                <!-- DISEÑO INTERACTIVO DE PRECIO POR NOCHE -->
+                <div class="bg-warm-100 p-5 rounded-2xl border border-warm-200 shadow-sm mt-4 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <div class="text-xs text-warm-600 font-bold uppercase tracking-wider" data-es="Precio por Noche" data-en="Price Per Night">Precio por Noche</div>
+                        
+                        <!-- Pestañas/Botones Discretos para Cambiar Divisa -->
+                        <div class="flex bg-warm-200/60 p-0.5 rounded-lg text-xs font-bold text-warm-800">
+                            <button onclick="setCurrency('MXN')" id="btn-mxn" class="px-2.5 py-1 rounded-md bg-warm-900 text-white transition shadow-xs">MXN</button>
+                            <button onclick="setCurrency('USD')" id="btn-usd" class="px-2.5 py-1 rounded-md hover:text-warm-900 transition">USD</button>
+                            <button onclick="setCurrency('CAD')" id="btn-cad" class="px-2.5 py-1 rounded-md hover:text-warm-900 transition">CAD</button>
+                            <button onclick="setCurrency('EUR')" id="btn-eur" class="px-2.5 py-1 rounded-md hover:text-warm-900 transition">EUR</button>
+                        </div>
+                    </div>
+
+                    <!-- Display del Precio Grande y Dinámico -->
+                    <div class="flex items-baseline gap-2">
+                        <div id="price-display" class="text-4xl font-serif font-bold text-warm-900 transition-all">$190</div>
+                        <span id="currency-label" class="text-sm font-semibold text-warm-600">MXN / noche</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario Directo a WhatsApp -->
+            <div class="md:col-span-5 bg-white p-6 rounded-3xl border border-warm-200 shadow-xl">
+                <h2 class="text-xl font-serif font-bold text-warm-900 mb-1 flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-accent-whatsapp text-2xl"></i>
+                    <span data-es="Reserva Directa" data-en="Direct Booking">Reserva Directa</span>
+                </h2>
+                <p class="text-xs text-warm-600 mb-4" data-es="Envía tu solicitud al instante a nuestro WhatsApp" data-en="Send your booking request directly to WhatsApp">Envía tu solicitud al instante a nuestro WhatsApp</p>
+
+                <form onsubmit="sendWhatsAppReservation(event)" class="space-y-3.5">
+                    <div>
+                        <label class="block text-xs font-semibold text-warm-800 mb-1" data-es="Nombre completo" data-en="Full Name">Nombre completo</label>
+                        <input type="text" id="res-name" required class="w-full px-3.5 py-2.5 text-sm bg-warm-50 border border-warm-200 rounded-xl focus:ring-2 focus:ring-warm-600 outline-none" placeholder="Ej. Ana Martínez">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-semibold text-warm-800 mb-1" data-es="Huéspedes" data-en="Guests">Huéspedes</label>
+                            <input type="number" id="res-guests" min="1" value="1" required class="w-full px-3.5 py-2.5 text-sm bg-warm-50 border border-warm-200 rounded-xl focus:ring-2 focus:ring-warm-600 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-warm-800 mb-1" data-es="Habitación (Opcional)" data-en="Room (Optional)">Habitación (Opcional)</label>
+                            <select id="res-room" class="w-full px-3.5 py-2.5 text-sm bg-warm-50 border border-warm-200 rounded-xl focus:ring-2 focus:ring-warm-600 outline-none">
+                                <option value="No especificado" data-es="Seleccionar..." data-en="Select...">Seleccionar...</option>
+                                <option value="1 Matrimonial">1 Matrimonial</option>
+                                <option value="2 Matrimoniales">2 Matrimoniales</option>
+                                <option value="2 Matrimoniales + 1 Individual">2 Matrimoniales + 1 Ind.</option>
+                                <option value="Estancia mensual (1-2 personas)" data-es="Estancia Mensual" data-en="Monthly Stay">Estancia Mensual</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-semibold text-warm-800 mb-1">Check-in</label>
+                            <input type="date" id="res-checkin" required class="w-full px-3.5 py-2.5 text-sm bg-warm-50 border border-warm-200 rounded-xl focus:ring-2 focus:ring-warm-600 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-warm-800 mb-1">Check-out</label>
+                            <input type="date" id="res-checkout" required class="w-full px-3.5 py-2.5 text-sm bg-warm-50 border border-warm-200 rounded-xl focus:ring-2 focus:ring-warm-600 outline-none">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-accent-whatsapp hover:opacity-95 text-white font-bold py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 transition text-sm">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span data-es="Enviar Consulta por WhatsApp" data-en="Send Request via WhatsApp">Enviar Consulta por WhatsApp</span>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GALERÍA DE IMÁGENES -->
+    <section class="py-10 px-4 max-w-6xl mx-auto">
+        <h2 class="text-2xl font-serif font-bold text-center text-warm-900 mb-6" data-es="Conoce Nuestras Instalaciones" data-en="Explore Our Facilities">
+            Conoce Nuestras Instalaciones
+        </h2>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div class="overflow-hidden rounded-2xl border border-warm-200 shadow-sm aspect-4/3">
+                <img src="https://i.ibb.co/C5vbVxLn/250823539.jpg" alt="Fachada Posada San José" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+            </div>
+            <div class="overflow-hidden rounded-2xl border border-warm-200 shadow-sm aspect-4/3">
+                <img src="https://i.ibb.co/jP7GpwDB/ostrovok-473936-c0b2e1-610859.jpg" alt="Alberca y zona exterior" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+            </div>
+            <div class="overflow-hidden rounded-2xl border border-warm-200 shadow-sm aspect-4/3">
+                <img src="https://i.ibb.co/nsHP9DB3/ostrovok-473936-ce9760-581042.jpg" alt="Habitación confortable" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+            </div>
+            <div class="overflow-hidden rounded-2xl border border-warm-200 shadow-sm aspect-4/3">
+                <img src="https://i.ibb.co/LhZzf34m/250823536.jpg" alt="Área de descanso" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+            </div>
+        </div>
+
+        <!-- ENLACES A PORTALES EXTERNOS DE RESERVA -->
+        <div class="mt-8 bg-white p-6 rounded-3xl border border-warm-200 shadow-sm text-center max-w-3xl mx-auto space-y-4">
+            <p class="text-xs font-bold text-warm-600 uppercase tracking-widest" data-es="O reserva desde tus plataformas preferidas" data-en="Or book from your preferred platforms">
+                O reserva desde tus plataformas preferidas
+            </p>
+            <div class="flex flex-wrap justify-center items-center gap-3">
+                <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 border border-warm-200 rounded-xl text-xs font-bold text-warm-800 bg-warm-50 hover:bg-warm-100 transition shadow-xs flex items-center gap-2">
+                    <i class="fa-solid fa-hotel text-warm-600"></i> Booking.com
+                </a>
+                <a href="https://www.expedia.mx/Santa-Maria-Huatulco-Hoteles-Hotel-Posada-San-Jose.h52976384.Informacion-Hotel" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 border border-warm-200 rounded-xl text-xs font-bold text-warm-800 bg-warm-50 hover:bg-warm-100 transition shadow-xs flex items-center gap-2">
+                    <i class="fa-solid fa-plane-departure text-warm-600"></i> Expedia
+                </a>
+                <a href="https://www.hoteles.com/ho1696244288/posada-san-jose-san-pedro-pochutla-mexico/?locale=es_MX&siteid=300400003" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 border border-warm-200 rounded-xl text-xs font-bold text-warm-800 bg-warm-50 hover:bg-warm-100 transition shadow-xs flex items-center gap-2">
+                    <i class="fa-solid fa-bed text-warm-600"></i> Hoteles.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN CO-WORKING -->
+    <section class="py-12 bg-warm-100 px-4 border-y border-warm-200">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                
+                <!-- Información Coworking -->
+                <div class="md:col-span-7 space-y-4">
+                    <span class="bg-warm-900 text-warm-50 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider"
+                          data-es="Referencia Principal de Co-Working en Pochutla" data-en="Main Co-Working Space in Pochutla">
+                        Referencia Principal de Co-Working en Pochutla
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-warm-900"
+                        data-es="Comodidad inigualable y excelente conexión"
+                        data-en="Unmatched comfort & excellent connectivity">
+                        Comodidad inigualable y excelente conexión
+                    </h2>
+                    <p class="text-warm-800 text-sm leading-relaxed"
+                       data-es="Un espacio tranquilo y funcional diseñado para nómadas digitales y profesionales en ruta."
+                       data-en="A quiet and functional space designed for digital nomads and traveling professionals.">
+                        Un espacio tranquilo y funcional diseñado para nómadas digitales y profesionales en ruta.
+                    </p>
+
+                    <!-- Beneficios Clásicos -->
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <div class="flex items-center gap-2 text-xs font-semibold text-warm-800">
+                            <i class="fa-solid fa-wifi text-warm-600"></i>
+                            <span data-es="Wi-Fi de Alta Velocidad" data-en="High-Speed Wi-Fi">Wi-Fi de Alta Velocidad</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs font-semibold text-warm-800">
+                            <i class="fa-solid fa-plug text-warm-600"></i>
+                            <span data-es="Contactos Eléctricos Cercanos" data-en="Power Outlets Everywhere">Contactos Eléctricos Cercanos</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs font-semibold text-warm-800">
+                            <i class="fa-solid fa-snowflake text-warm-600"></i>
+                            <span data-es="Ambiente Climatizado (A/A)" data-en="Air-Conditioned Area">Ambiente Climatizado</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs font-semibold text-warm-800">
+                            <i class="fa-solid fa-mug-hot text-warm-600"></i>
+                            <span data-es="Escritorios Cómodos" data-en="Comfortable Desks">Escritorios Cómodos</span>
+                        </div>
+                    </div>
+
+                    <!-- Pase Diario Coworking -->
+                    <div class="bg-warm-50 p-4 rounded-xl border border-warm-200 inline-block mt-2 shadow-sm">
+                        <div class="text-xs text-warm-600 uppercase tracking-wide" data-es="Pase Diario Coworking:" data-en="Daily Coworking Pass:">Pase Diario Coworking:</div>
+                        <div class="text-2xl font-serif font-bold text-warm-900">$120 MXN <span class="text-xs font-sans font-normal text-warm-600">/ día (day)</span></div>
+                        <div class="text-xs text-warm-600 mt-1 flex gap-3">
+                            <span>USD: $7.34</span>
+                            <span>CAD: $10.84</span>
+                            <span>EUR: €6.53</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario Coworking -->
+                <div class="md:col-span-5 bg-white p-6 rounded-3xl border border-warm-200 shadow-md">
+                    <h3 class="font-serif font-bold text-warm-900 mb-1 text-base" data-es="Reserva tu Espacio de Trabajo" data-en="Reserve Your Coworking Desk">
+                        Reserva tu Espacio de Trabajo
+                    </h3>
+                    <p class="text-xs text-warm-600 mb-4" data-es="Formulario rápido de confirmación" data-en="Quick confirmation form">Formulario rápido de confirmación</p>
+
+                    <form onsubmit="sendWhatsAppCoworking(event)" class="space-y-3.5">
+                        <div>
+                            <label class="block text-xs font-semibold text-warm-800 mb-1" data-es="Nombre" data-en="Name">Nombre</label>
+                            <input type="text" id="cowork-name" required class="w-full px-3.5 py-2.5 text-sm bg-warm-50 border border-warm-200 rounded-xl outline-none focus:ring-2 focus:ring-warm-600" placeholder="Tu nombre">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-warm-800 mb-1" data-es="Hora aproximada de llegada" data-en="Approximate arrival time">Hora aprox. de llegada</label>
+                            <input type="time" id="cowork-time" required class="w-full px-3.5 py-2.5 text-sm bg-warm-50 border border-warm-200 rounded-xl outline-none focus:ring-2 focus:ring-warm-600">
+                        </div>
+                        <button type="submit" class="w-full bg-warm-900 hover:bg-warm-800 text-warm-50 font-bold py-3 rounded-xl text-sm transition flex items-center justify-center gap-2 shadow-sm">
+                            <i class="fa-solid fa-laptop"></i>
+                            <span data-es="Solicitar Reserva Coworking" data-en="Request Coworking Space">Solicitar Reserva Coworking</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PUNTOS FUERTES Y SERVICIOS -->
+    <section class="py-12 px-4 max-w-6xl mx-auto">
+        <h2 class="text-2xl font-serif font-bold text-center text-warm-900 mb-8" data-es="Nuestros Puntos Fuertes" data-en="Highlights & Amenities">
+            Nuestros Puntos Fuertes
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white p-5 rounded-2xl border border-warm-200 shadow-sm text-center">
+                <div class="w-10 h-10 bg-warm-100 text-warm-900 rounded-full flex items-center justify-center mx-auto mb-3 text-base">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <h3 class="font-bold text-sm mb-1 text-warm-900" data-es="Ubicación Estratégica" data-en="Strategic Location">Ubicación Estratégica</h3>
+                <p class="text-xs text-warm-600" data-es="Excelente conectividad hacia destinos finales." data-en="Great connectivity to travel destinations.">Excelente conectividad hacia destinos finales.</p>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-warm-200 shadow-sm text-center">
+                <div class="w-10 h-10 bg-warm-100 text-warm-900 rounded-full flex items-center justify-center mx-auto mb-3 text-base">
+                    <i class="fa-solid fa-water-ladder"></i>
+                </div>
+                <h3 class="font-bold text-sm mb-1 text-warm-900" data-es="Alberca Exterior" data-en="Outdoor Pool">Alberca Exterior</h3>
+                <p class="text-xs text-warm-600" data-es="Área de alberca y espacio al aire libre." data-en="Pool area and outdoor relaxation space.">Área de alberca y espacio al aire libre.</p>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-warm-200 shadow-sm text-center">
+                <div class="w-10 h-10 bg-warm-100 text-warm-900 rounded-full flex items-center justify-center mx-auto mb-3 text-base">
+                    <i class="fa-solid fa-square-parking"></i>
+                </div>
+                <h3 class="font-bold text-sm mb-1 text-warm-900" data-es="Estacionamiento Gratis" data-en="Free Parking">Estacionamiento Gratis</h3>
+                <p class="text-xs text-warm-600" data-es="Estacionamiento gratuito y seguro en las instalaciones." data-en="Free and secure parking on site.">Estacionamiento gratuito y seguro en las instalaciones.</p>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-warm-200 shadow-sm text-center">
+                <div class="w-10 h-10 bg-warm-100 text-warm-900 rounded-full flex items-center justify-center mx-auto mb-3 text-base">
+                    <i class="fa-solid fa-bed"></i>
+                </div>
+                <h3 class="font-bold text-sm mb-1 text-warm-900" data-es="Habitaciones Equipadas" data-en="Equipped Rooms">Habitaciones Equipadas</h3>
+                <p class="text-xs text-warm-600" data-es="Camas cómodas, ventilador, A/A, TV por cable y baño privado." data-en="Comfy beds, fan, A/C, cable TV & private bathroom.">Camas cómodas, ventilador, A/A, TV por cable y baño privado.</p>
+            </div>
+        </div>
+
+        <div class="mt-6 bg-warm-100 p-4 rounded-2xl border border-warm-200 flex flex-wrap justify-around text-xs text-warm-800 gap-4 text-center">
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-clock text-warm-600"></i> <span data-es="Recepción 24 horas" data-en="24-Hour Front Desk">Recepción 24 horas</span></span>
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-route text-warm-600"></i> <span data-es="Organización de Tours" data-en="Tour Desk">Organización de Tours</span></span>
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-shirt text-warm-600"></i> <span data-es="Servicio de Lavandería" data-en="Laundry Service">Servicio de Lavandería</span></span>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-warm-900 text-warm-200 text-xs py-8 px-4 text-center">
+        <div class="max-w-6xl mx-auto space-y-3">
+            <p>Posada San José Hotel &copy; 2026 - San Pedro Pochutla, Oaxaca, México.</p>
+            <div class="flex justify-center gap-4 text-warm-200">
+                <a href="https://www.instagram.com/posadasanjosehotel" target="_blank" class="hover:text-white"><i class="fa-brands fa-instagram text-lg"></i></a>
+                <a href="https://www.facebook.com/Posadasanjosepochutla" target="_blank" class="hover:text-white"><i class="fa-brands fa-facebook text-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <div class="fixed bottom-4 right-4 z-40 md:hidden">
+        <a href="https://wa.me/529585849170?text=Hola,%20quisiera%20pedir%20informaci%C3%B3n%20sobre%20las%20habitaciones." target="_blank" class="bg-accent-whatsapp text-white p-4 rounded-full shadow-2xl flex items-center justify-center text-2xl">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // COORDENADAS DEL HOTEL POSADA SAN JOSÉ POCHUTLA
+        const HOTEL_LAT = 15.7441;
+        const HOTEL_LNG = -96.4674;
+
+        // Imágenes para el Hero aleatorio
+        const heroImages = [
+            'https://i.ibb.co/C5vbVxLn/250823539.jpg',
+            'https://i.ibb.co/LhZzf34m/250823536.jpg',
+            'https://i.ibb.co/jP7GpwDB/ostrovok-473936-c0b2e1-610859.jpg',
+            'https://i.ibb.co/nsHP9DB3/ostrovok-473936-ce9760-581042.jpg',
+            'https://i.ibb.co/qL0HqTWm/ostrovok-473936-fad839-626917.jpg',
+            'https://i.ibb.co/DgYntJ3r/ostrovok-473936-6e543e-636288.jpg',
+            'https://i.ibb.co/5gJkR3Xn/ostrovok-473936-60deb0-669789.jpg',
+            'https://i.ibb.co/BHCCMWhP/ostrovok-473936-62259a-645960.jpg',
+            'https://i.ibb.co/Rtdk1Rf/ostrovok-473936-6aa79d-601844.jpg'
+        ];
+
+        let currentLang = 'es';
+
+        // Selección aleatoria de imagen al cargar la página
+        window.addEventListener('DOMContentLoaded', () => {
+            const randomIndex = Math.floor(Math.random() * heroImages.length);
+            const heroImgEl = document.getElementById('hero-bg-img');
+            if (heroImgEl) {
+                heroImgEl.src = heroImages[randomIndex];
+            }
+        });
+
+        // Precios en diferentes monedas
+        const prices = {
+            'MXN': { value: '$190', label: 'MXN / noche' },
+            'USD': { value: '$11.63', label: 'USD / night' },
+            'CAD': { value: '$17.16', label: 'CAD / night' },
+            'EUR': { value: '€10.34', label: 'EUR / night' }
+        };
+
+        // Función para cambiar de divisa interactivamente
+        function setCurrency(curr) {
+            const priceDisplay = document.getElementById('price-display');
+            const currencyLabel = document.getElementById('currency-label');
+
+            priceDisplay.innerText = prices[curr].value;
+            currencyLabel.innerText = prices[curr].label;
+
+            ['MXN', 'USD', 'CAD', 'EUR'].forEach(c => {
+                const btn = document.getElementById(`btn-${c.toLowerCase()}`);
+                if (c === curr) {
+                    btn.className = 'px-2.5 py-1 rounded-md bg-warm-900 text-white transition shadow-xs';
+                } else {
+                    btn.className = 'px-2.5 py-1 rounded-md hover:text-warm-900 transition';
+                }
+            });
+        }
+
+        // GEOLOCALIZACIÓN Y CÁLCULO DE DISTANCIA
+        function getUserLocation() {
+            const statusEl = document.getElementById('location-status');
+            
+            if (!navigator.geolocation) {
+                statusEl.innerText = "La geolocalización no es compatible con tu navegador.";
+                return;
+            }
+
+            statusEl.innerText = "Obteniendo tu ubicación actual...";
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const userLat = position.coords.latitude;
+                    const userLng = position.coords.longitude;
+
+                    const distanceMeters = getHaversineDistance(userLat, userLng, HOTEL_LAT, HOTEL_LNG);
+                    const walkMinutes = Math.round((distanceMeters / 1000) / 4.5 * 60); // 4.5 km/h walking
+                    const driveMinutes = Math.max(1, Math.round((distanceMeters / 1000) / 35 * 60)); // 35 km/h driving
+
+                    let distanceText = distanceMeters < 1000 
+                        ? `${Math.round(distanceMeters)} metros` 
+                        : `${(distanceMeters / 1000).toFixed(1)} km`;
+
+                    statusEl.innerHTML = `Estás a <strong>${distanceText}</strong> del hotel ` +
+                        `(<i class="fa-solid fa-person-walking"></i> ~${walkMinutes} min caminando | ` +
+                        `<i class="fa-solid fa-car"></i> ~${driveMinutes} min en auto).`;
+
+                    const navBtn = document.getElementById('gmaps-nav-btn');
+                    navBtn.href = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${HOTEL_LAT},${HOTEL_LNG}&travelmode=walking`;
+                },
+                (error) => {
+                    statusEl.innerText = "No pudimos acceder a tu ubicación. Puedes presionar 'Iniciar Recorrido' para abrir la ruta directa en Google Maps.";
+                }
+            );
+        }
+
+        // Fórmula Haversine para distancia exacta
+        function getHaversineDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371000; // Radio de la tierra en metros
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        // Cambio de Idioma (Español / Inglés)
+        function toggleLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            document.getElementById('lang-btn-text').innerText = currentLang === 'es' ? 'English' : 'Español';
+            
+            document.querySelectorAll('[data-es]').forEach(el => {
+                if (el.dataset[currentLang]) {
+                    el.innerText = el.dataset[currentLang];
+                }
+            });
+        }
+
+        // Enviar Reserva a WhatsApp
+        function sendWhatsAppReservation(event) {
+            event.preventDefault();
+            const phone = "529585849170";
+            const name = document.getElementById('res-name').value;
+            const guests = document.getElementById('res-guests').value;
+            const room = document.getElementById('res-room').value;
+            const checkin = document.getElementById('res-checkin').value;
+            const checkout = document.getElementById('res-checkout').value;
+
+            const text = `*Solicitud de Reserva - Posada San José*\n\n` +
+                         `*Nombre:* ${name}\n` +
+                         `*Huéspedes:* ${guests}\n` +
+                         `*Habitación:* ${room}\n` +
+                         `*Check-in:* ${checkin}\n` +
+                         `*Check-out:* ${checkout}`;
+
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        // Enviar Coworking a WhatsApp
+        function sendWhatsAppCoworking(event) {
+            event.preventDefault();
+            const phone = "529585849170";
+            const name = document.getElementById('cowork-name').value;
+            const time = document.getElementById('cowork-time').value;
+
+            const text = `*Solicitud de Reserva Co-Working*\n\n` +
+                         `*Nombre:* ${name}\n` +
+                         `*Hora de llegada estimada:* ${time}\n` +
+                         `*Pase Diario:* $120 MXN`;
+
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
