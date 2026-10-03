@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posada San José Hotel | Pochutla, Oaxaca</title>
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS desde CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -148,7 +148,7 @@
                     Ideal para tu noche de paso hacia las playas o estancias cortas. Comodidad e instalaciones diseñadas para tu tranquilidad.
                 </p>
 
-                <!-- PRECIO POR NOCHE INTERACTIVO -->
+                <!-- PRECIO POR NOCHE INTERACTIVO (REDONDEADO HACIA ARRIBA) -->
                 <div class="bg-warm-100 p-6 rounded-3xl border border-warm-200 shadow-sm mt-6 space-y-4">
                     <div class="flex justify-between items-center">
                         <div class="text-xs font-bold text-warm-600 uppercase tracking-wider" data-es="Precio por Noche" data-en="Price Per Night">Precio por Noche</div>
@@ -320,14 +320,14 @@
                         </div>
                     </div>
 
-                    <!-- Pase Diario Coworking -->
+                    <!-- Pase Diario Coworking (Redondeado hacia arriba) -->
                     <div class="bg-warm-50 p-5 rounded-2xl border border-warm-200 inline-block mt-2 shadow-sm">
                         <div class="text-xs text-warm-600 uppercase font-bold tracking-wide" data-es="Pase Diario Coworking:" data-en="Daily Coworking Pass:">Pase Diario Coworking:</div>
                         <div class="text-3xl font-serif font-bold text-warm-900">$120 MXN <span class="text-sm font-sans font-normal text-warm-600">/ día (day)</span></div>
-                        <div class="text-sm text-warm-600 mt-1 flex gap-4">
-                            <span>USD: $7.34</span>
-                            <span>CAD: $10.84</span>
-                            <span>EUR: €6.53</span>
+                        <div class="text-sm text-warm-600 mt-1 flex gap-4 font-semibold">
+                            <span>USD: $8</span>
+                            <span>CAD: $11</span>
+                            <span>EUR: €7</span>
                         </div>
                     </div>
                 </div>
@@ -464,8 +464,8 @@
             </button>
             <h3 class="font-serif font-bold text-2xl text-warm-900" data-es="Galería de la Alberca" data-en="Pool Gallery">Galería de la Alberca</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <img src="https://i.ibb.co/jP7GpwDB/ostrovok-473936-c0b2e1-610859.jpg" alt="Alberca Posada San José" class="rounded-xl w-full h-52 object-cover">
-                <img src="https://i.ibb.co/5gJkR3Xn/ostrovok-473936-60deb0-669789.jpg" alt="Vista exterior de la alberca" class="rounded-xl w-full h-52 object-cover">
+                <img src="https://i.ibb.co/LhZzf34m/250823536.jpg" alt="Área de alberca Posada San José" class="rounded-xl w-full h-56 object-cover cursor-pointer" onclick="openLightbox('https://i.ibb.co/LhZzf34m/250823536.jpg')">
+                <img src="https://i.ibb.co/C5vbVxLn/250823539.jpg" alt="Instalaciones de alberca Posada San José" class="rounded-xl w-full h-56 object-cover cursor-pointer" onclick="openLightbox('https://i.ibb.co/C5vbVxLn/250823539.jpg')">
             </div>
         </div>
     </div>
@@ -498,7 +498,6 @@
             }
         });
 
-        // Funciones del Modal / Lightbox para ver en grande
         function openLightbox(src) {
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox-modal').classList.remove('hidden');
@@ -516,11 +515,12 @@
             document.getElementById('pool-modal').classList.add('hidden');
         }
 
+        // PRECIOS CON REDONDEO HACIA ARRIBA (Math.ceil) SIN CENTAVOS
         const prices = {
             'MXN': { value: '$190', label: 'MXN / noche' },
-            'USD': { value: '$11.63', label: 'USD / night' },
-            'CAD': { value: '$17.16', label: 'CAD / night' },
-            'EUR': { value: '€10.34', label: 'EUR / night' }
+            'USD': { value: '$12', label: 'USD / night' },
+            'CAD': { value: '$18', label: 'CAD / night' },
+            'EUR': { value: '€11', label: 'EUR / night' }
         };
 
         function setCurrency(curr) {
