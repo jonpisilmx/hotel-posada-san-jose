@@ -36,7 +36,7 @@
     <!-- BARRA SUPERIOR FIJA -->
     <header class="sticky top-0 z-50 bg-warm-50/95 backdrop-blur-md border-b border-warm-200">
         <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- Logo con Contenedor Circular Más Grande -->
+            <!-- Logo con Contenedor Circular -->
             <a href="#" class="flex items-center gap-3">
                 <div class="w-14 h-14 rounded-full bg-white border border-warm-200 shadow-md flex items-center justify-center p-1 overflow-hidden shrink-0">
                     <img src="https://i.ibb.co/k6Df0gq3/logochigo.png" alt="Posada San José Logo" class="w-full h-full object-contain">
@@ -58,7 +58,7 @@
                 </a>
 
                 <!-- Google Maps Cómo Llegar -->
-                <a href="https://maps.app.goo.gl/FrsYgDiJDxvcnoto7" target="_blank" rel="noopener" class="bg-warm-900 text-warm-50 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-warm-800 transition shadow-sm">
+                <a href="https://maps.app.goo.gl/zHuKskS4LQQo8sDv7" target="_blank" rel="noopener" class="bg-warm-900 text-warm-50 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-warm-800 transition shadow-sm">
                     <i class="fa-solid fa-location-dot"></i>
                     <span data-es="Cómo llegar" data-en="Directions">Cómo llegar</span>
                 </a>
@@ -120,7 +120,7 @@
                     <span data-es="Obtener Ubicación" data-en="Get Location">Obtener Ubicación</span>
                 </button>
 
-                <a id="gmaps-nav-btn" href="https://maps.app.goo.gl/FrsYgDiJDxvcnoto7" target="_blank" rel="noopener" class="bg-warm-900 hover:bg-warm-800 text-white px-5 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-2 shadow-sm">
+                <a id="gmaps-nav-btn" href="https://maps.app.goo.gl/zHuKskS4LQQo8sDv7" target="_blank" rel="noopener" class="bg-warm-900 hover:bg-warm-800 text-white px-5 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-2 shadow-sm">
                     <i class="fa-solid fa-diamond-turn-right text-accent-whatsapp"></i>
                     <span data-es="Iniciar Recorrido" data-en="Start Navigation">Iniciar Recorrido</span>
                 </a>
@@ -132,7 +132,7 @@
     <section id="reservar" class="py-12 px-4 max-w-6xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
             
-            <div class="md:col-span-7 space-y-5">
+            <div class="md:col-span-7 space-y-6">
                 <span class="inline-block bg-warm-200 text-warm-900 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider"
                       data-es="El mejor costo-beneficio en Pochutla" data-en="Best value stay in Pochutla">
                     El mejor costo-beneficio en Pochutla
@@ -143,17 +143,21 @@
                     Seguridad, descanso y la mejor conectividad
                 </h2>
                 <p class="text-warm-800 text-base md:text-lg leading-relaxed"
-                   data-es="Ideal para tu noche de paso hacia las playas o estancias cortas. Comodidad e instalaciones diseñadas para tu tranquilidad."
-                   data-en="Ideal for an overnight stay on your way to the coast or short visits. Comfort and facilities designed for your peace of mind.">
-                    Ideal para tu noche de paso hacia las playas o estancias cortas. Comodidad e instalaciones diseñadas para tu tranquilidad.
+                   data-es="Ideal para tu noche de paso hacia las playas o estancias cortas y largas. Comodidad e instalaciones diseñadas para tu tranquilidad."
+                   data-en="Ideal for an overnight stay on your way to the coast, short or long stays. Comfort and facilities designed for your peace of mind.">
+                    Ideal para tu noche de paso hacia las playas o estancias cortas y largas. Comodidad e instalaciones diseñadas para tu tranquilidad.
                 </p>
 
-                <!-- PRECIO POR NOCHE INTERACTIVO (REDONDEADO HACIA ARRIBA) -->
-                <div class="bg-warm-100 p-6 rounded-3xl border border-warm-200 shadow-sm mt-6 space-y-4">
-                    <div class="flex justify-between items-center">
-                        <div class="text-xs font-bold text-warm-600 uppercase tracking-wider" data-es="Precio por Noche" data-en="Price Per Night">Precio por Noche</div>
+                <!-- SECCIÓN: NUESTRAS TARIFAS Y PRECIOS -->
+                <div class="bg-warm-100 p-6 rounded-3xl border border-warm-200 shadow-sm space-y-5">
+                    <div class="flex flex-wrap justify-between items-center gap-3">
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-warm-900" data-es="Nuestras Tarifas y Precios" data-en="Our Rates and Prices">Nuestras Tarifas y Precios</h3>
+                            <p class="text-xs text-warm-600 font-medium" data-es="Precios por Noche y Renta Mensual" data-en="Nightly Rates & Monthly Rentals">Precios por Noche y Renta Mensual</p>
+                        </div>
                         
-                        <div class="flex bg-warm-200/60 p-1 rounded-xl text-xs font-bold text-warm-800">
+                        <!-- Botones de selección de divisa -->
+                        <div class="flex bg-warm-200/70 p-1 rounded-xl text-xs font-bold text-warm-800">
                             <button onclick="setCurrency('MXN')" id="btn-mxn" class="px-3 py-1.5 rounded-lg bg-warm-900 text-white transition shadow-xs">MXN</button>
                             <button onclick="setCurrency('USD')" id="btn-usd" class="px-3 py-1.5 rounded-lg hover:text-warm-900 transition">USD</button>
                             <button onclick="setCurrency('CAD')" id="btn-cad" class="px-3 py-1.5 rounded-lg hover:text-warm-900 transition">CAD</button>
@@ -161,9 +165,114 @@
                         </div>
                     </div>
 
-                    <div class="flex items-baseline gap-3">
-                        <div id="price-display" class="text-5xl font-serif font-bold text-warm-900 transition-all">$190</div>
-                        <span id="currency-label" class="text-base font-semibold text-warm-600">MXN / noche</span>
+                    <!-- Lista estructurada de precios por categoría -->
+                    <div class="space-y-4 pt-2">
+                        <!-- Habitaciones Sólo Ventilador (Noche) -->
+                        <div class="bg-white/80 p-4 rounded-2xl border border-warm-200/60">
+                            <div class="flex items-center gap-2 text-warm-900 font-bold text-sm mb-2">
+                                <i class="fa-solid fa-fan text-warm-600"></i>
+                                <span data-es="Habitaciones con Ventilador (Por Noche)" data-en="Fan-Only Rooms (Per Night)">Habitaciones con Ventilador (Por Noche)</span>
+                            </div>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between items-center border-b border-warm-100 pb-1">
+                                    <span class="text-warm-800" data-es="1 Cama Matrimonial" data-en="1 Double Bed">1 Cama Matrimonial</span>
+                                    <span id="rate-v-1m" class="font-bold text-warm-900">$600 MXN</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-warm-100 pb-1">
+                                    <span class="text-warm-800" data-es="2 Camas Matrimoniales" data-en="2 Double Beds">2 Camas Matrimoniales</span>
+                                    <span id="rate-v-2m" class="font-bold text-warm-900">$850 MXN</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-warm-800" data-es="2 Camas Matrimoniales + 1 Individual" data-en="2 Double Beds + 1 Single Bed">2 Camas Matrimoniales + 1 Individual</span>
+                                    <span id="rate-v-2m1i" class="font-bold text-warm-900">$1,000 MXN</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Habitaciones con Aire Acondicionado (Noche) -->
+                        <div class="bg-white/80 p-4 rounded-2xl border border-warm-200/60">
+                            <div class="flex items-center gap-2 text-warm-900 font-bold text-sm mb-2">
+                                <i class="fa-solid fa-snowflake text-warm-600"></i>
+                                <span data-es="Habitaciones con Aire Acondicionado - A/A (Por Noche)" data-en="Air-Conditioned Rooms - A/C (Per Night)">Habitaciones con Aire Acondicionado (Por Noche)</span>
+                            </div>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between items-center border-b border-warm-100 pb-1">
+                                    <span class="text-warm-800" data-es="1 Cama Matrimonial" data-en="1 Double Bed">1 Cama Matrimonial</span>
+                                    <span id="rate-ac-1m" class="font-bold text-warm-900">$750 MXN</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-warm-100 pb-1">
+                                    <span class="text-warm-800" data-es="2 Camas Matrimoniales" data-en="2 Double Beds">2 Camas Matrimoniales</span>
+                                    <span id="rate-ac-2m" class="font-bold text-warm-900">$1,000 MXN</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-warm-100 pb-1">
+                                    <span class="text-warm-800" data-es="2 Camas Matrimoniales + 1 Individual" data-en="2 Double Beds + 1 Single Bed">2 Camas Matrimoniales + 1 Individual</span>
+                                    <span id="rate-ac-2m1i" class="font-bold text-warm-900">$1,300 MXN</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-warm-800" data-es="1 Cama King Size" data-en="1 King Size Bed">1 Cama King Size</span>
+                                    <span id="rate-ac-1k" class="font-bold text-warm-900">$1,000 MXN</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SECCIÓN PRECIOS DE RENTA POR MES -->
+                        <div class="bg-white p-4 rounded-2xl border border-warm-300 shadow-xs space-y-3">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="flex items-center gap-2 text-warm-900 font-bold text-base">
+                                        <i class="fa-solid fa-calendar-days text-warm-600"></i>
+                                        <span data-es="Renta por Mes (Habitación Matrimonial)" data-en="Monthly Rental (Double Room)">Renta por Mes (Habitación Matrimonial)</span>
+                                    </div>
+                                    <p class="text-xs text-warm-600 mt-0.5" data-es="Precio especial para 1 o 2 personas" data-en="Special rate for 1 or 2 guests">Precio especial para 1 o 2 personas</p>
+                                </div>
+                                <span class="bg-warm-900 text-white text-[10px] uppercase font-bold px-2 py-1 rounded-md" data-es="Larga Estancia" data-en="Long Term">Larga Estancia</span>
+                            </div>
+
+                            <div class="space-y-2 text-sm pt-1">
+                                <div class="flex justify-between items-center border-b border-warm-100 pb-2">
+                                    <span class="text-warm-800 font-medium flex items-center gap-1.5">
+                                        <i class="fa-solid fa-fan text-xs text-warm-600"></i>
+                                        <span data-es="Equipado sólo con Ventilador" data-en="Fan-Only Room">Equipado sólo con Ventilador</span>
+                                    </span>
+                                    <div class="text-right">
+                                        <span id="rate-month-fan-old" class="line-through text-xs text-warm-600 block">$18,000 MXN</span>
+                                        <span id="rate-month-fan" class="font-bold text-emerald-700 text-base">$3,800 MXN <span class="text-xs font-normal text-warm-600">/ mes</span></span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center pb-1">
+                                    <span class="text-warm-800 font-medium flex items-center gap-1.5">
+                                        <i class="fa-solid fa-snowflake text-xs text-warm-600"></i>
+                                        <span data-es="Equipado con Aire Acondicionado" data-en="Air-Conditioned Room">Equipado con Aire Acondicionado</span>
+                                    </span>
+                                    <div class="text-right">
+                                        <span id="rate-month-ac-old" class="line-through text-xs text-warm-600 block">$22,500 MXN</span>
+                                        <span id="rate-month-ac" class="font-bold text-emerald-700 text-base">$4,800 MXN <span class="text-xs font-normal text-warm-600">/ mes</span></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Servicios Incluidos -->
+                            <div class="bg-warm-50 p-3 rounded-xl text-xs space-y-1.5 border border-warm-200/70">
+                                <div class="font-bold text-warm-900 flex items-center gap-1" data-es="Servicios incluidos en la renta:" data-en="Services included in rent:">
+                                    <i class="fa-solid fa-circle-check text-emerald-600"></i> Servicios incluidos:
+                                </div>
+                                <p class="text-warm-800 leading-relaxed" data-es="Incluye agua, luz, internet de alta velocidad, TV por cable, limpieza 1 vez a la semana y estacionamiento para 1 automóvil." data-en="Includes water, electricity, high-speed internet, cable TV, weekly cleaning, and parking for 1 car.">
+                                    Incluye agua, luz, internet, TV por cable, limpieza una vez a la semana y estacionamiento para un automóvil.
+                                </p>
+                            </div>
+
+                            <!-- Condiciones -->
+                            <div class="text-[11px] text-warm-600 space-y-0.5 italic">
+                                <p data-es="• Condiciones: Mínimo dos meses pagados por adelantado." data-en="• Conditions: Minimum two months paid in advance.">• Condiciones: Mínimo dos meses pagados por adelantado.</p>
+                                <p data-es="• En caso de requerir factura, se calculará el total más impuestos correspondientes." data-en="• Tax invoice available upon request (taxes applied separately).">• En caso de requerir factura, se calculará el total más impuestos.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nota con tipo de cambio -->
+                    <div id="exchange-note" class="text-xs text-warm-600 bg-warm-200/40 p-3 rounded-xl flex items-center gap-2">
+                        <i class="fa-solid fa-circle-info text-warm-600"></i>
+                        <span id="exchange-note-text">Precios base en Pesos Mexicanos (MXN). Las tarifas diarias incluyen limpieza diaria.</span>
                     </div>
                 </div>
             </div>
@@ -185,27 +294,38 @@
                     <div class="grid grid-cols-2 gap-3">
                         <div>
                             <label class="block text-xs font-semibold text-warm-800 mb-1" data-es="Huéspedes" data-en="Guests">Huéspedes</label>
-                            <input type="number" id="res-guests" min="1" value="1" required class="w-full px-4 py-3 text-base bg-warm-50 border border-warm-200 rounded-xl focus:ring-2 focus:ring-warm-600 outline-none">
+                            <input type="number" id="res-guests" min="1" max="5" value="1" required class="w-full px-4 py-3 text-base bg-warm-50 border border-warm-200 rounded-xl focus:ring-2 focus:ring-warm-600 outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-warm-800 mb-1" data-es="Habitación (Opcional)" data-en="Room (Optional)">Habitación (Opcional)</label>
+                            <label class="block text-xs font-semibold text-warm-800 mb-1" data-es="Modalidad / Habitación" data-en="Option / Room">Modalidad / Habitación</label>
                             <select id="res-room" class="w-full px-4 py-3 text-base bg-warm-50 border border-warm-200 rounded-xl focus:ring-2 focus:ring-warm-600 outline-none">
                                 <option value="No especificado" data-es="Seleccionar..." data-en="Select...">Seleccionar...</option>
-                                <option value="1 Matrimonial">1 Matrimonial</option>
-                                <option value="2 Matrimoniales">2 Matrimoniales</option>
-                                <option value="2 Matrimoniales + 1 Individual">2 Matrimoniales + 1 Ind.</option>
-                                <option value="Estancia mensual (1-2 personas)" data-es="Estancia Mensual" data-en="Monthly Stay">Estancia Mensual</option>
+                                <optgroup label="Estancia Mensual (Renta por Mes)">
+                                    <option value="Renta Mensual - Ventilador ($3,800 MXN/mes)">Mensual - Ventilador ($3,800 MXN/mes)</option>
+                                    <option value="Renta Mensual - A/A ($4,800 MXN/mes)">Mensual - A/A ($4,800 MXN/mes)</option>
+                                </optgroup>
+                                <optgroup label="Noche - Sólo Ventilador">
+                                    <option value="Ventilador - 1 Cama Matrimonial ($600 MXN)">Ventilador - 1 Matrimonial ($600 MXN)</option>
+                                    <option value="Ventilador - 2 Camas Matrimoniales ($850 MXN)">Ventilador - 2 Matrimoniales ($850 MXN)</option>
+                                    <option value="Ventilador - 2 Matrimoniales + 1 Individual ($1,000 MXN)">Ventilador - 2 Matrimoniales + 1 Ind. ($1,000 MXN)</option>
+                                </optgroup>
+                                <optgroup label="Noche - Con Aire Acondicionado">
+                                    <option value="A/A - 1 Cama Matrimonial ($750 MXN)">A/A - 1 Matrimonial ($750 MXN)</option>
+                                    <option value="A/A - 2 Camas Matrimoniales ($1,000 MXN)">A/A - 2 Matrimoniales ($1,000 MXN)</option>
+                                    <option value="A/A - 2 Matrimoniales + 1 Individual ($1,300 MXN)">A/A - 2 Matrimoniales + 1 Ind. ($1,300 MXN)</option>
+                                    <option value="A/A - 1 Cama King Size ($1,000 MXN)">A/A - 1 King Size ($1,000 MXN)</option>
+                                </optgroup>
                             </select>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-xs font-semibold text-warm-800 mb-1">Check-in</label>
+                            <label class="block text-xs font-semibold text-warm-800 mb-1">Check-in / Inicio</label>
                             <input type="date" id="res-checkin" required class="w-full px-4 py-3 text-base bg-warm-50 border border-warm-200 rounded-xl focus:ring-2 focus:ring-warm-600 outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-warm-800 mb-1">Check-out</label>
+                            <label class="block text-xs font-semibold text-warm-800 mb-1">Check-out / Fin</label>
                             <input type="date" id="res-checkout" required class="w-full px-4 py-3 text-base bg-warm-50 border border-warm-200 rounded-xl focus:ring-2 focus:ring-warm-600 outline-none">
                         </div>
                     </div>
@@ -220,7 +340,7 @@
         </div>
     </section>
 
-    <!-- GALERÍA CON VISOR EN GRANDE (LIGHTBOX) -->
+    <!-- GALERÍA CON LIGHTBOX -->
     <section class="py-12 px-4 max-w-6xl mx-auto">
         <h2 class="text-3xl font-serif font-bold text-center text-warm-900 mb-8" data-es="Conoce Nuestras Instalaciones" data-en="Explore Our Facilities">
             Conoce Nuestras Instalaciones
@@ -253,7 +373,7 @@
             </div>
         </div>
 
-        <!-- BOTONES GRANDES PARA PORTALES EXTERNOS -->
+        <!-- PORTALES EXTERNOS -->
         <div class="mt-10 bg-white p-8 rounded-3xl border border-warm-200 shadow-sm text-center max-w-4xl mx-auto space-y-5">
             <p class="text-sm font-bold text-warm-600 uppercase tracking-widest" data-es="O reserva directamente en tus plataformas preferidas" data-en="Or book directly on your preferred platforms">
                 O reserva directamente en tus plataformas preferidas
@@ -300,7 +420,7 @@
                         Un espacio tranquilo y funcional diseñado para nómadas digitales y profesionales en ruta.
                     </p>
 
-                    <!-- Beneficios Clásicos -->
+                    <!-- Beneficios -->
                     <div class="grid grid-cols-2 gap-4 pt-2">
                         <div class="flex items-center gap-3 text-sm md:text-base font-semibold text-warm-800">
                             <i class="fa-solid fa-wifi text-warm-600 text-lg"></i>
@@ -320,14 +440,14 @@
                         </div>
                     </div>
 
-                    <!-- Pase Diario Coworking (Redondeado hacia arriba) -->
+                    <!-- Pase Diario Coworking -->
                     <div class="bg-warm-50 p-5 rounded-2xl border border-warm-200 inline-block mt-2 shadow-sm">
                         <div class="text-xs text-warm-600 uppercase font-bold tracking-wide" data-es="Pase Diario Coworking:" data-en="Daily Coworking Pass:">Pase Diario Coworking:</div>
                         <div class="text-3xl font-serif font-bold text-warm-900">$120 MXN <span class="text-sm font-sans font-normal text-warm-600">/ día (day)</span></div>
-                        <div class="text-sm text-warm-600 mt-1 flex gap-4 font-semibold">
-                            <span>USD: $8</span>
-                            <span>CAD: $11</span>
-                            <span>EUR: €7</span>
+                        <div id="cowork-prices-alt" class="text-sm text-warm-600 mt-1 flex gap-4 font-semibold">
+                            <span>USD: $6</span>
+                            <span>CAD: $9</span>
+                            <span>EUR: €6</span>
                         </div>
                     </div>
                 </div>
@@ -367,7 +487,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
             
-            <!-- TARJETA 1: Ubicación Estratégica con Botón de Geolocalización -->
+            <!-- TARJETA 1: Ubicación Estratégica con Botón Dinámico de Tiempo Caminando -->
             <div class="bg-white p-6 rounded-3xl border border-warm-200 shadow-sm text-center flex flex-col justify-between">
                 <div>
                     <div class="w-12 h-12 bg-warm-100 text-warm-900 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
@@ -376,13 +496,22 @@
                     <h3 class="font-bold text-lg mb-2 text-warm-900" data-es="Ubicación Estratégica" data-en="Strategic Location">Ubicación Estratégica</h3>
                     <p class="text-sm text-warm-600 mb-4" data-es="Excelente conectividad hacia destinos finales y terminales." data-en="Great connectivity to travel destinations and bus terminals.">Excelente conectividad hacia destinos finales y terminales.</p>
                 </div>
-                <button onclick="getUserLocation()" class="w-full bg-warm-100 hover:bg-warm-200 text-warm-900 text-xs font-bold py-2.5 px-3 rounded-xl border border-warm-200 transition flex items-center justify-center gap-1.5">
-                    <i class="fa-solid fa-crosshairs text-warm-600"></i>
-                    <span data-es="Ver tiempo desde mi ubicación" data-en="Check travel time">Ver tiempo desde mi ubicación</span>
-                </button>
+                
+                <div class="space-y-2">
+                    <button id="check-time-btn" onclick="calculateWalkingTime()" class="w-full bg-warm-100 hover:bg-warm-200 text-warm-900 text-xs font-bold py-2.5 px-3 rounded-xl border border-warm-200 transition flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-crosshairs text-warm-600"></i>
+                        <span id="check-time-btn-text" data-es="Ver tiempo desde mi ubicación" data-en="Check travel time">Ver tiempo desde mi ubicación</span>
+                    </button>
+
+                    <!-- Botón Desplegable para Navegación A Pie a Hotel Posada San José -->
+                    <a id="walk-time-link" href="https://maps.app.goo.gl/zHuKskS4LQQo8sDv7" target="_blank" rel="noopener" class="hidden w-full bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 shadow-sm">
+                        <i class="fa-solid fa-person-walking text-lg"></i>
+                        <span id="walk-time-text">Tiempo estimado caminando: Calculando...</span>
+                    </a>
+                </div>
             </div>
 
-            <!-- TARJETA 2: Alberca Exterior con Mini-Galería Sensible -->
+            <!-- TARJETA 2: Alberca Exterior -->
             <div class="bg-white p-6 rounded-3xl border border-warm-200 shadow-sm text-center flex flex-col justify-between">
                 <div>
                     <div class="w-12 h-12 bg-warm-100 text-warm-900 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
@@ -441,12 +570,12 @@
 
     <!-- BOTÓN FLOTANTE WHATSAPP -->
     <div class="fixed bottom-5 right-5 z-40 md:hidden">
-        <a href="https://wa.me/529585849170?text=Hola,%20quisiera%20pedir%20informaci%C3%B3n%20sobre%20las%20habitaciones." target="_blank" class="bg-accent-whatsapp text-white p-4 rounded-full shadow-2xl flex items-center justify-center text-3xl">
+        <a href="https://wa.me/529581420618?text=Hola,%20quisiera%20pedir%20informaci%C3%B3n%20sobre%20las%20habitaciones." target="_blank" class="bg-accent-whatsapp text-white p-4 rounded-full shadow-2xl flex items-center justify-center text-3xl">
             <i class="fa-brands fa-whatsapp"></i>
         </a>
     </div>
 
-    <!-- MODAL OVERLAY PARA FOTO EN GRANDE (LIGHTBOX) -->
+    <!-- MODAL OVERLAY PARA LIGHTBOX -->
     <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="relative max-w-4xl w-full">
             <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white text-3xl font-bold hover:text-warm-200">
@@ -456,7 +585,7 @@
         </div>
     </div>
 
-    <!-- MODAL DE MINI-GALERÍA DE ALBERCA -->
+    <!-- MODAL GALERÍA DE ALBERCA -->
     <div id="pool-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl p-6 max-w-3xl w-full relative space-y-4">
             <button onclick="closePoolGallery()" class="absolute top-4 right-5 text-warm-900 text-3xl font-bold">
@@ -472,9 +601,12 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        const HOTEL_LAT = 15.7441;
-        const HOTEL_LNG = -96.4674;
-        const MAPS_URL = "https://maps.app.goo.gl/FrsYgDiJDxvcnoto7";
+        // Coordenadas geográficas y enlaces exactos del Hotel Posada San José en San Pedro Pochutla
+        const HOTEL_LAT = 15.7443833;
+        const HOTEL_LNG = -96.4673891;
+        const MAPS_DESTINATION_QUERY = "Hotel+Posada+San+Jose+San+Pedro+Pochutla+Oaxaca";
+        const MAPS_OFFICIAL_URL = "https://maps.app.goo.gl/zHuKskS4LQQo8sDv7";
+        const HOTEL_WHATSAPP = "529581420618";
 
         const heroImages = [
             'https://i.ibb.co/C5vbVxLn/250823539.jpg',
@@ -515,32 +647,109 @@
             document.getElementById('pool-modal').classList.add('hidden');
         }
 
-        // PRECIOS CON REDONDEO HACIA ARRIBA (Math.ceil) SIN CENTAVOS
-        const prices = {
-            'MXN': { value: '$190', label: 'MXN / noche' },
-            'USD': { value: '$12', label: 'USD / night' },
-            'CAD': { value: '$18', label: 'CAD / night' },
-            'EUR': { value: '€11', label: 'EUR / night' }
+        // PRECIOS BASE EN MXN (NOCHE Y RENTA MENSUAL)
+        const basePrices = {
+            'v-1m': 600,
+            'v-2m': 850,
+            'v-2m1i': 1000,
+            'ac-1m': 750,
+            'ac-2m': 1000,
+            'ac-2m1i': 1300,
+            'ac-1k': 1000,
+            'month-fan': 3800,
+            'month-fan-old': 18000,
+            'month-ac': 4800,
+            'month-ac-old': 22500
+        };
+
+        // TIPOS DE CAMBIO CON EL 10% A FAVOR DE MXN
+        const exchangeRates = {
+            'MXN': { rate: 1, symbol: '$', code: 'MXN' },
+            'USD': { rate: 20.04, symbol: '$', code: 'USD' },
+            'CAD': { rate: 14.05, symbol: '$', code: 'CAD' },
+            'EUR': { rate: 22.42, symbol: '€', code: 'EUR' }
         };
 
         function setCurrency(curr) {
-            const priceDisplay = document.getElementById('price-display');
-            const currencyLabel = document.getElementById('currency-label');
+            const currencyData = exchangeRates[curr];
 
-            priceDisplay.innerText = prices[curr].value;
-            currencyLabel.innerText = prices[curr].label;
+            for (const key in basePrices) {
+                const priceInMXN = basePrices[key];
+                const converted = Math.ceil(priceInMXN / currencyData.rate);
+                const element = document.getElementById(`rate-${key}`);
+                if (element) {
+                    const suffix = key.startsWith('month-') && !key.endsWith('-old') ? ' / mes' : '';
+                    element.innerText = `${currencyData.symbol}${converted.toLocaleString()} ${currencyData.code}${suffix}`;
+                }
+            }
+
+            const noteTextEl = document.getElementById('exchange-note-text');
+            if (noteTextEl) {
+                if (curr === 'MXN') {
+                    noteTextEl.innerText = 'Precios base en Pesos Mexicanos (MXN). Las tarifas diarias incluyen limpieza diaria.';
+                } else {
+                    noteTextEl.innerText = `Tipo de cambio aplicado: 1 ${curr} = $${currencyData.rate.toFixed(2)} MXN. Precios redondeados sin centavos.`;
+                }
+            }
 
             ['MXN', 'USD', 'CAD', 'EUR'].forEach(c => {
                 const btn = document.getElementById(`btn-${c.toLowerCase()}`);
-                if (c === curr) {
-                    btn.className = 'px-3 py-1.5 rounded-lg bg-warm-900 text-white transition shadow-xs';
-                } else {
-                    btn.className = 'px-3 py-1.5 rounded-lg hover:text-warm-900 transition';
+                if (btn) {
+                    if (c === curr) {
+                        btn.className = 'px-3 py-1.5 rounded-lg bg-warm-900 text-white transition shadow-xs';
+                    } else {
+                        btn.className = 'px-3 py-1.5 rounded-lg hover:text-warm-900 transition';
+                    }
                 }
             });
         }
 
-        // GEOLOCALIZACIÓN Y TIEMPO DE TRASLADO
+        // CÁLCULO DE TIEMPO ESTIMADO CAMINANDO (TARJETA UBICACIÓN ESTRATÉGICA)
+        function calculateWalkingTime() {
+            const checkBtnText = document.getElementById('check-time-btn-text');
+            const walkLink = document.getElementById('walk-time-link');
+            const walkText = document.getElementById('walk-time-text');
+
+            if (!navigator.geolocation) {
+                alert("La geolocalización no está soportada por tu navegador.");
+                return;
+            }
+
+            checkBtnText.innerText = "Obteniendo ubicación...";
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const userLat = position.coords.latitude;
+                    const userLng = position.coords.longitude;
+
+                    // Distancia por fórmula Haversine
+                    const distanceMeters = getHaversineDistance(userLat, userLng, HOTEL_LAT, HOTEL_LNG);
+                    
+                    // Tiempo estimado caminando
+                    const walkMinutes = Math.round((distanceMeters / 1000) / 4.5 * 60);
+                    
+                    let distFormatted = distanceMeters < 1000 
+                        ? `${Math.round(distanceMeters)} m` 
+                        : `${(distanceMeters / 1000).toFixed(1)} km`;
+
+                    const timeLabel = walkMinutes < 1 ? "< 1 min" : `~${walkMinutes} min`;
+                    
+                    walkText.innerText = `Tiempo estimado caminando: ${timeLabel} (${distFormatted})`;
+                    
+                    // Ruta directa a pie con destino fijado en el Hotel Posada San José Pochutla
+                    walkLink.href = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${MAPS_DESTINATION_QUERY}&travelmode=walking`;
+                    
+                    walkLink.classList.remove('hidden');
+                    checkBtnText.innerText = "Actualizar mi ubicación";
+                },
+                (error) => {
+                    checkBtnText.innerText = "Ver tiempo desde mi ubicación";
+                    alert("No fue posible acceder a tu ubicación. Por favor activa los permisos de geolocalización.");
+                }
+            );
+        }
+
+        // GEOLOCALIZACIÓN Y TIEMPO GENERAL DE TRASLADO
         function getUserLocation() {
             const statusEl = document.getElementById('location-status');
             
@@ -569,7 +778,7 @@
                         `<i class="fa-solid fa-car"></i> ~${driveMinutes} min en auto).`;
 
                     const navBtn = document.getElementById('gmaps-nav-btn');
-                    navBtn.href = `${MAPS_URL}`;
+                    navBtn.href = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${MAPS_DESTINATION_QUERY}`;
                 },
                 (error) => {
                     statusEl.innerText = "No pudimos acceder a tu ubicación. Puedes presionar 'Iniciar Recorrido' para abrir la ruta directa en Google Maps.";
@@ -601,26 +810,24 @@
 
         function sendWhatsAppReservation(event) {
             event.preventDefault();
-            const phone = "529585849170";
             const name = document.getElementById('res-name').value;
             const guests = document.getElementById('res-guests').value;
             const room = document.getElementById('res-room').value;
             const checkin = document.getElementById('res-checkin').value;
             const checkout = document.getElementById('res-checkout').value;
 
-            const text = `*Solicitud de Reserva - Posada San José*\n\n` +
+            const text = `*Solicitud de Reserva / Información - Posada San José*\n\n` +
                          `*Nombre:* ${name}\n` +
                          `*Huéspedes:* ${guests}\n` +
-                         `*Habitación:* ${room}\n` +
-                         `*Check-in:* ${checkin}\n` +
-                         `*Check-out:* ${checkout}`;
+                         `*Opción / Habitación:* ${room}\n` +
+                         `*Fecha inicio / Check-in:* ${checkin}\n` +
+                         `*Fecha fin / Check-out:* ${checkout}`;
 
-            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+            window.open(`https://wa.me/${HOTEL_WHATSAPP}?text=${encodeURIComponent(text)}`, '_blank');
         }
 
         function sendWhatsAppCoworking(event) {
             event.preventDefault();
-            const phone = "529585849170";
             const name = document.getElementById('cowork-name').value;
             const time = document.getElementById('cowork-time').value;
 
@@ -629,7 +836,7 @@
                          `*Hora de llegada estimada:* ${time}\n` +
                          `*Pase Diario:* $120 MXN`;
 
-            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+            window.open(`https://wa.me/${HOTEL_WHATSAPP}?text=${encodeURIComponent(text)}`, '_blank');
         }
     </script>
 </body>
