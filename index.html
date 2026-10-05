@@ -445,9 +445,9 @@
                         <div class="text-xs text-warm-600 uppercase font-bold tracking-wide" data-es="Pase Diario Coworking:" data-en="Daily Coworking Pass:">Pase Diario Coworking:</div>
                         <div class="text-3xl font-serif font-bold text-warm-900">$120 MXN <span class="text-sm font-sans font-normal text-warm-600">/ día (day)</span></div>
                         <div id="cowork-prices-alt" class="text-sm text-warm-600 mt-1 flex gap-4 font-semibold">
-                            <span>USD: $6</span>
-                            <span>CAD: $9</span>
-                            <span>EUR: €6</span>
+                            <span>USD: $11</span>
+                            <span>CAD: $16</span>
+                            <span>EUR: €10</span>
                         </div>
                     </div>
                 </div>
@@ -487,7 +487,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
             
-            <!-- TARJETA 1: Ubicación Estratégica con Botón Dinámico de Tiempo Caminando -->
+            <!-- TARJETA 1: Ubicación Estratégica -->
             <div class="bg-white p-6 rounded-3xl border border-warm-200 shadow-sm text-center flex flex-col justify-between">
                 <div>
                     <div class="w-12 h-12 bg-warm-100 text-warm-900 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
@@ -601,7 +601,7 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Coordenadas geográficas y enlaces exactos del Hotel Posada San José en San Pedro Pochutla
+        // Coordenadas geográficas y enlaces del Hotel Posada San José
         const HOTEL_LAT = 15.7443833;
         const HOTEL_LNG = -96.4673891;
         const MAPS_DESTINATION_QUERY = "Hotel+Posada+San+Jose+San+Pedro+Pochutla+Oaxaca";
@@ -628,6 +628,8 @@
             if (heroImgEl) {
                 heroImgEl.src = heroImages[randomIndex];
             }
+            // Consultar tipos de cambio en tiempo real al cargar la página
+            fetchLiveExchangeRates();
         });
 
         function openLightbox(src) {
@@ -662,24 +664,51 @@
             'month-ac-old': 22500
         };
 
-        // TIPOS DE CAMBIO CON EL 10% A FAVOR DE MXN
+        // VALORES DE RESPALDO (FALLBACK) EN CASO DE FALLO DE RED
         const exchangeRates = {
             'MXN': { rate: 1, symbol: '$', code: 'MXN' },
-            'USD': { rate: 16, symbol: '$', code: 'USD' },
-            'CAD': { rate: 10.50, symbol: '$', code: 'CAD' },
-            'EUR': { rate: 19, symbol: '€', code: 'EUR' }
+            'USD': { rate: 18.1903, symbol: '$', code: 'USD' },
+            'CAD': { rate: 12.7714, symbol: '$', code: 'CAD' },
+            'EUR': { rate: 20.4368, symbol: '€', code: 'EUR' }
         };
+
+        // CONSULTA DE TIPOS DE CAMBIO EN TIEMPO REAL AL CARGAR LA PÁGINA
+        async function fetchLiveExchangeRates() {
+            try {
+                // Consulta las cotizaciones dinámicas frente al Peso Mexicano (MXN)
+                const response = await fetch('https://api.frankfurter.app/latest?from=MXN&to=USD,CAD,EUR');
+                if (!response.ok) return;
+                
+                const data = await response.json();
+                if (data && data.rates) {
+                    // La API entrega el valor de 1 MXN en divisas extranjeras, invertimos para obtener MXN por divisa
+                    if (data.rates.USD) exchangeRates['USD'].rate = 1 / data.rates.USD;
+                    if (data.rates.CAD) exchangeRates['CAD'].rate = 1 / data.rates.CAD;
+                    if (data.rates.EUR) exchangeRates['EUR'].rate = 1 / data.rates.EUR;
+                }
+            } catch (error) {
+                console.log("No se pudo obtener el tipo de cambio dinámico. Usando valores guardados de respaldo.");
+            }
+        }
 
         function setCurrency(curr) {
             const currencyData = exchangeRates[curr];
 
             for (const key in basePrices) {
                 const priceInMXN = basePrices[key];
-                const converted = Math.ceil(priceInMXN / currencyData.rate);
                 const element = document.getElementById(`rate-${key}`);
+                
                 if (element) {
-                    const suffix = key.startsWith('month-') && !key.endsWith('-old') ? ' / mes' : '';
-                    element.innerText = `${currencyData.symbol}${converted.toLocaleString()} ${currencyData.code}${suffix}`;
+                    if (curr === 'MXN') {
+                        const suffix = key.startsWith('month-') && !key.endsWith('-old') ? ' / mes' : '';
+                        element.innerText = `$${priceInMXN.toLocaleString()} MXN${suffix}`;
+                    } else {
+                        // Tarifa con $75 MXN adicionales de cargo convertida a la divisa
+                        const priceWithExtra = priceInMXN + 75;
+                        const converted = Math.ceil(priceWithExtra / currencyData.rate);
+                        const suffix = key.startsWith('month-') && !key.endsWith('-old') ? ' / mes' : '';
+                        element.innerText = `${currencyData.symbol}${converted.toLocaleString()} ${currencyData.code}${suffix}`;
+                    }
                 }
             }
 
@@ -688,7 +717,7 @@
                 if (curr === 'MXN') {
                     noteTextEl.innerText = 'Precios base en Pesos Mexicanos (MXN). Las tarifas diarias incluyen limpieza diaria.';
                 } else {
-                    noteTextEl.innerText = `Tipo de cambio aplicado: 1 ${curr} = $${currencyData.rate.toFixed(2)} MXN. Precios redondeados sin centavos.`;
+                    noteTextEl.innerText = `Tipo de cambio del día: 1 ${curr} = $${currencyData.rate.toFixed(2)} MXN (+ $75 MXN de cargo por conversión). Precios redondeados.`;
                 }
             }
 
@@ -704,7 +733,7 @@
             });
         }
 
-        // CÁLCULO DE TIEMPO ESTIMADO CAMINANDO (TARJETA UBICACIÓN ESTRATÉGICA)
+        // CÁLCULO DE TIEMPO ESTIMADO CAMINANDO
         function calculateWalkingTime() {
             const checkBtnText = document.getElementById('check-time-btn-text');
             const walkLink = document.getElementById('walk-time-link');
@@ -722,10 +751,7 @@
                     const userLat = position.coords.latitude;
                     const userLng = position.coords.longitude;
 
-                    // Distancia por fórmula Haversine
                     const distanceMeters = getHaversineDistance(userLat, userLng, HOTEL_LAT, HOTEL_LNG);
-                    
-                    // Tiempo estimado caminando
                     const walkMinutes = Math.round((distanceMeters / 1000) / 4.5 * 60);
                     
                     let distFormatted = distanceMeters < 1000 
@@ -735,8 +761,6 @@
                     const timeLabel = walkMinutes < 1 ? "< 1 min" : `~${walkMinutes} min`;
                     
                     walkText.innerText = `Tiempo estimado caminando: ${timeLabel} (${distFormatted})`;
-                    
-                    // Ruta directa a pie con destino fijado en el Hotel Posada San José Pochutla
                     walkLink.href = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${MAPS_DESTINATION_QUERY}&travelmode=walking`;
                     
                     walkLink.classList.remove('hidden');
