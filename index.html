@@ -165,8 +165,25 @@
                         </div>
                     </div>
 
+                    <!-- SWITCH TEMPORADA BAJA / ALTA -->
+                    <div class="bg-white p-3.5 rounded-2xl border border-warm-200/80 flex items-center justify-between shadow-xs">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-umbrella-beach text-warm-600 text-lg"></i>
+                            <div>
+                                <span id="season-label-title" class="text-xs font-bold text-warm-900 block" data-es="Temporada Selección:" data-en="Selected Season:">Temporada Activa:</span>
+                                <span id="season-status-text" class="text-xs font-bold text-emerald-700 uppercase" data-es="Temporada Baja" data-en="Low Season">Temporada Baja</span>
+                            </div>
+                        </div>
+
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="season-toggle" onchange="toggleSeason()" class="sr-only peer">
+                            <div class="w-14 h-7 bg-warm-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-warm-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-amber-600"></div>
+                            <span class="ml-2 text-xs font-bold text-warm-800 hidden sm:inline" id="season-toggle-label" data-es="Alta / Baja" data-en="High / Low">Alta / Baja</span>
+                        </label>
+                    </div>
+
                     <!-- Lista estructurada de precios por categoría -->
-                    <div class="space-y-4 pt-2">
+                    <div class="space-y-4 pt-1">
                         <!-- Habitaciones Sólo Ventilador (Noche) -->
                         <div class="bg-white/80 p-4 rounded-2xl border border-warm-200/60">
                             <div class="flex items-center gap-2 text-warm-900 font-bold text-sm mb-2">
@@ -221,7 +238,7 @@
                                 <div>
                                     <div class="flex items-center gap-2 text-warm-900 font-bold text-base">
                                         <i class="fa-solid fa-calendar-days text-warm-600"></i>
-                                        <span data-es="Renta por Mes (Habitación Matrimonial)" data-en="Monthly Rental (Double Room)">Renta por Mes (Habitación Matrimonial)</span>
+                                        <span data-es="Renta por Mes" data-en="Monthly Rental">Renta por Mes</span>
                                     </div>
                                     <p class="text-xs text-warm-600 mt-0.5" data-es="Precio especial para 1 o 2 personas" data-en="Special rate for 1 or 2 guests">Precio especial para 1 o 2 personas</p>
                                 </div>
@@ -232,21 +249,31 @@
                                 <div class="flex justify-between items-center border-b border-warm-100 pb-2">
                                     <span class="text-warm-800 font-medium flex items-center gap-1.5">
                                         <i class="fa-solid fa-fan text-xs text-warm-600"></i>
-                                        <span data-es="Equipado sólo con Ventilador" data-en="Fan-Only Room">Equipado sólo con Ventilador</span>
+                                        <span data-es="Habitación Matrimonial - Ventilador" data-en="Double Room - Fan">Habitación Matrimonial - Ventilador</span>
                                     </span>
                                     <div class="text-right">
                                         <span id="rate-month-fan-old" class="line-through text-xs text-warm-600 block">$18,000 MXN</span>
                                         <span id="rate-month-fan" class="font-bold text-emerald-700 text-base">$3,800 MXN <span class="text-xs font-normal text-warm-600">/ mes</span></span>
                                     </div>
                                 </div>
-                                <div class="flex justify-between items-center pb-1">
+                                <div class="flex justify-between items-center border-b border-warm-100 pb-2">
                                     <span class="text-warm-800 font-medium flex items-center gap-1.5">
                                         <i class="fa-solid fa-snowflake text-xs text-warm-600"></i>
-                                        <span data-es="Equipado con Aire Acondicionado" data-en="Air-Conditioned Room">Equipado con Aire Acondicionado</span>
+                                        <span data-es="Habitación Matrimonial - Aire Acondicionado" data-en="Double Room - Air Conditioned">Habitación Matrimonial - Aire Acondicionado</span>
                                     </span>
                                     <div class="text-right">
                                         <span id="rate-month-ac-old" class="line-through text-xs text-warm-600 block">$22,500 MXN</span>
                                         <span id="rate-month-ac" class="font-bold text-emerald-700 text-base">$4,800 MXN <span class="text-xs font-normal text-warm-600">/ mes</span></span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center pb-1">
+                                    <span class="text-warm-800 font-medium flex items-center gap-1.5">
+                                        <i class="fa-solid fa-crown text-xs text-warm-600"></i>
+                                        <span data-es="Habitación King Size - Aire Acondicionado" data-en="King Size Room - Air Conditioned">Habitación King Size - Aire Acondicionado</span>
+                                    </span>
+                                    <div class="text-right">
+                                        <span id="rate-month-ks-old" class="line-through text-xs text-warm-600 block">$25,000 MXN</span>
+                                        <span id="rate-month-ks" class="font-bold text-emerald-700 text-base">$5,500 MXN <span class="text-xs font-normal text-warm-600">/ mes</span></span>
                                     </div>
                                 </div>
                             </div>
@@ -301,19 +328,20 @@
                             <select id="res-room" class="w-full px-4 py-3 text-base bg-warm-50 border border-warm-200 rounded-xl focus:ring-2 focus:ring-warm-600 outline-none">
                                 <option value="No especificado" data-es="Seleccionar..." data-en="Select...">Seleccionar...</option>
                                 <optgroup label="Estancia Mensual (Renta por Mes)">
-                                    <option value="Renta Mensual - Ventilador ($3,800 MXN/mes)">Mensual - Ventilador ($3,800 MXN/mes)</option>
-                                    <option value="Renta Mensual - A/A ($4,800 MXN/mes)">Mensual - A/A ($4,800 MXN/mes)</option>
+                                    <option value="Renta Mensual - Matrimonial Ventilador">Mensual - Matrimonial Ventilador</option>
+                                    <option value="Renta Mensual - Matrimonial A/A">Mensual - Matrimonial A/A</option>
+                                    <option value="Renta Mensual - King Size A/A">Mensual - King Size A/A</option>
                                 </optgroup>
                                 <optgroup label="Noche - Sólo Ventilador">
-                                    <option value="Ventilador - 1 Cama Matrimonial ($600 MXN)">Ventilador - 1 Matrimonial ($600 MXN)</option>
-                                    <option value="Ventilador - 2 Camas Matrimoniales ($850 MXN)">Ventilador - 2 Matrimoniales ($850 MXN)</option>
-                                    <option value="Ventilador - 2 Matrimoniales + 1 Individual ($1,000 MXN)">Ventilador - 2 Matrimoniales + 1 Ind. ($1,000 MXN)</option>
+                                    <option value="Ventilador - 1 Cama Matrimonial">Ventilador - 1 Matrimonial</option>
+                                    <option value="Ventilador - 2 Camas Matrimoniales">Ventilador - 2 Matrimoniales</option>
+                                    <option value="Ventilador - 2 Matrimoniales + 1 Individual">Ventilador - 2 Matrimoniales + 1 Ind.</option>
                                 </optgroup>
                                 <optgroup label="Noche - Con Aire Acondicionado">
-                                    <option value="A/A - 1 Cama Matrimonial ($750 MXN)">A/A - 1 Matrimonial ($750 MXN)</option>
-                                    <option value="A/A - 2 Camas Matrimoniales ($1,000 MXN)">A/A - 2 Matrimoniales ($1,000 MXN)</option>
-                                    <option value="A/A - 2 Matrimoniales + 1 Individual ($1,300 MXN)">A/A - 2 Matrimoniales + 1 Ind. ($1,300 MXN)</option>
-                                    <option value="A/A - 1 Cama King Size ($1,000 MXN)">A/A - 1 King Size ($1,000 MXN)</option>
+                                    <option value="A/A - 1 Cama Matrimonial">A/A - 1 Matrimonial</option>
+                                    <option value="A/A - 2 Camas Matrimoniales">A/A - 2 Matrimoniales</option>
+                                    <option value="A/A - 2 Matrimoniales + 1 Individual">A/A - 2 Matrimoniales + 1 Ind.</option>
+                                    <option value="A/A - 1 Cama King Size">A/A - 1 King Size</option>
                                 </optgroup>
                             </select>
                         </div>
@@ -373,15 +401,16 @@
             </div>
         </div>
 
-        <!-- PORTALES EXTERNOS -->
+        <!-- PORTALES EXTERNOS DE RESERVA -->
         <div class="mt-10 bg-white p-8 rounded-3xl border border-warm-200 shadow-sm text-center max-w-4xl mx-auto space-y-5">
             <p class="text-sm font-bold text-warm-600 uppercase tracking-widest" data-es="O reserva directamente en tus plataformas preferidas" data-en="Or book directly on your preferred platforms">
                 O reserva directamente en tus plataformas preferidas
             </p>
             <div class="flex flex-wrap justify-center items-center gap-4">
-                <a href="" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 border-2 border-warm-200 rounded-2xl text-base font-bold text-warm-900 bg-warm-50 hover:bg-warm-100 transition shadow-sm flex items-center gap-3">
-                    <i class="fa-solid fa-hotel text-warm-600 text-xl"></i> Booking.com
-                </a>
+                <!-- Botón Booking Desactivado/Apagado -->
+                <button disabled class="px-6 py-3.5 border-2 border-warm-200/50 rounded-2xl text-base font-bold text-warm-600 bg-gray-100/70 opacity-60 cursor-not-allowed flex items-center gap-3" title="Temporalmente no disponible">
+                    <i class="fa-solid fa-hotel text-warm-600"></i> Booking.com
+                </button>
                 <a href="https://www.expedia.mx/Santa-Maria-Huatulco-Hoteles-Hotel-Posada-San-Jose.h52976384.Informacion-Hotel" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 border-2 border-warm-200 rounded-2xl text-base font-bold text-warm-900 bg-warm-50 hover:bg-warm-100 transition shadow-sm flex items-center gap-3">
                     <i class="fa-solid fa-plane-departure text-warm-600 text-xl"></i> Expedia
                 </a>
@@ -621,6 +650,8 @@
         ];
 
         let currentLang = 'es';
+        let currentCurrency = 'MXN';
+        let isHighSeason = false;
 
         window.addEventListener('DOMContentLoaded', () => {
             const randomIndex = Math.floor(Math.random() * heroImages.length);
@@ -628,7 +659,6 @@
             if (heroImgEl) {
                 heroImgEl.src = heroImages[randomIndex];
             }
-            // Consultar tipos de cambio en tiempo real al cargar la página
             fetchLiveExchangeRates();
         });
 
@@ -649,8 +679,8 @@
             document.getElementById('pool-modal').classList.add('hidden');
         }
 
-        // PRECIOS BASE EN MXN (NOCHE Y RENTA MENSUAL)
-        const basePrices = {
+        // PRECIOS BASE EN MXN SEGÚN TEMPORADA (BAJA / ALTA)
+        const basePricesLow = {
             'v-1m': 600,
             'v-2m': 850,
             'v-2m1i': 1000,
@@ -661,10 +691,27 @@
             'month-fan': 3800,
             'month-fan-old': 18000,
             'month-ac': 4800,
-            'month-ac-old': 22500
+            'month-ac-old': 22500,
+            'month-ks': 5500,
+            'month-ks-old': 25000
         };
 
-        // VALORES DE RESPALDO (FALLBACK) EN CASO DE FALLO DE RED
+        const basePricesHigh = {
+            'v-1m': 850,
+            'v-2m': 1100,
+            'v-2m1i': 1300,
+            'ac-1m': 1000,
+            'ac-2m': 1300,
+            'ac-2m1i': 1600,
+            'ac-1k': 1300,
+            'month-fan': 3800,
+            'month-fan-old': 18000,
+            'month-ac': 4800,
+            'month-ac-old': 22500,
+            'month-ks': 5500,
+            'month-ks-old': 25000
+        };
+
         const exchangeRates = {
             'MXN': { rate: 1, symbol: '$', code: 'MXN' },
             'USD': { rate: 18.1903, symbol: '$', code: 'USD' },
@@ -672,54 +719,43 @@
             'EUR': { rate: 20.4368, symbol: '€', code: 'EUR' }
         };
 
-        // CONSULTA DE TIPOS DE CAMBIO EN TIEMPO REAL AL CARGAR LA PÁGINA
         async function fetchLiveExchangeRates() {
             try {
-                // Consulta las cotizaciones dinámicas frente al Peso Mexicano (MXN)
                 const response = await fetch('https://api.frankfurter.app/latest?from=MXN&to=USD,CAD,EUR');
                 if (!response.ok) return;
                 
                 const data = await response.json();
                 if (data && data.rates) {
-                    // La API entrega el valor de 1 MXN en divisas extranjeras, invertimos para obtener MXN por divisa
                     if (data.rates.USD) exchangeRates['USD'].rate = 1 / data.rates.USD;
                     if (data.rates.CAD) exchangeRates['CAD'].rate = 1 / data.rates.CAD;
                     if (data.rates.EUR) exchangeRates['EUR'].rate = 1 / data.rates.EUR;
                 }
             } catch (error) {
-                console.log("No se pudo obtener el tipo de cambio dinámico. Usando valores guardados de respaldo.");
+                console.log("Usando valores de respaldo para divisas.");
             }
         }
 
-        function setCurrency(curr) {
-            const currencyData = exchangeRates[curr];
+        function toggleSeason() {
+            const toggleCheckbox = document.getElementById('season-toggle');
+            isHighSeason = toggleCheckbox.checked;
 
-            for (const key in basePrices) {
-                const priceInMXN = basePrices[key];
-                const element = document.getElementById(`rate-${key}`);
-                
-                if (element) {
-                    if (curr === 'MXN') {
-                        const suffix = key.startsWith('month-') && !key.endsWith('-old') ? ' / mes' : '';
-                        element.innerText = `$${priceInMXN.toLocaleString()} MXN${suffix}`;
-                    } else {
-                        // Tarifa con $75 MXN adicionales de cargo convertida a la divisa
-                        const priceWithExtra = priceInMXN + 75;
-                        const converted = Math.ceil(priceWithExtra / currencyData.rate);
-                        const suffix = key.startsWith('month-') && !key.endsWith('-old') ? ' / mes' : '';
-                        element.innerText = `${currencyData.symbol}${converted.toLocaleString()} ${currencyData.code}${suffix}`;
-                    }
-                }
-            }
-
-            const noteTextEl = document.getElementById('exchange-note-text');
-            if (noteTextEl) {
-                if (curr === 'MXN') {
-                    noteTextEl.innerText = 'Precios base en Pesos Mexicanos (MXN). Las tarifas diarias incluyen limpieza diaria.';
+            const statusText = document.getElementById('season-status-text');
+            if (statusText) {
+                if (isHighSeason) {
+                    statusText.innerText = currentLang === 'es' ? 'Temporada Alta' : 'High Season';
+                    statusText.className = 'text-xs font-bold text-amber-600 uppercase';
                 } else {
-                    noteTextEl.innerText = `Tipo de cambio del día: 1 ${curr} = $${currencyData.rate.toFixed(2)} MXN (+ $75 MXN de cargo por conversión). Precios redondeados.`;
+                    statusText.innerText = currentLang === 'es' ? 'Temporada Baja' : 'Low Season';
+                    statusText.className = 'text-xs font-bold text-emerald-700 uppercase';
                 }
             }
+
+            renderRates();
+        }
+
+        function setCurrency(curr) {
+            currentCurrency = curr;
+            renderRates();
 
             ['MXN', 'USD', 'CAD', 'EUR'].forEach(c => {
                 const btn = document.getElementById(`btn-${c.toLowerCase()}`);
@@ -733,7 +769,37 @@
             });
         }
 
-        // CÁLCULO DE TIEMPO ESTIMADO CAMINANDO
+        function renderRates() {
+            const activeBasePrices = isHighSeason ? basePricesHigh : basePricesLow;
+            const currencyData = exchangeRates[currentCurrency];
+
+            for (const key in activeBasePrices) {
+                const priceInMXN = activeBasePrices[key];
+                const element = document.getElementById(`rate-${key}`);
+                
+                if (element) {
+                    if (currentCurrency === 'MXN') {
+                        const suffix = key.startsWith('month-') && !key.endsWith('-old') ? ' / mes' : '';
+                        element.innerText = `$${priceInMXN.toLocaleString()} MXN${suffix}`;
+                    } else {
+                        const priceWithExtra = priceInMXN + 75;
+                        const converted = Math.ceil(priceWithExtra / currencyData.rate);
+                        const suffix = key.startsWith('month-') && !key.endsWith('-old') ? ' / mes' : '';
+                        element.innerText = `${currencyData.symbol}${converted.toLocaleString()} ${currencyData.code}${suffix}`;
+                    }
+                }
+            }
+
+            const noteTextEl = document.getElementById('exchange-note-text');
+            if (noteTextEl) {
+                if (currentCurrency === 'MXN') {
+                    noteTextEl.innerText = 'Precios base en Pesos Mexicanos (MXN). Las tarifas diarias incluyen limpieza diaria.';
+                } else {
+                    noteTextEl.innerText = `Tipo de cambio del día: 1 ${currentCurrency} = $${currencyData.rate.toFixed(2)} MXN (+ $75 MXN cargo por conversión). Precios redondeados.`;
+                }
+            }
+        }
+
         function calculateWalkingTime() {
             const checkBtnText = document.getElementById('check-time-btn-text');
             const walkLink = document.getElementById('walk-time-link');
@@ -773,7 +839,6 @@
             );
         }
 
-        // GEOLOCALIZACIÓN Y TIEMPO GENERAL DE TRASLADO
         function getUserLocation() {
             const statusEl = document.getElementById('location-status');
             
@@ -825,6 +890,15 @@
             currentLang = currentLang === 'es' ? 'en' : 'es';
             document.getElementById('lang-btn-text').innerText = currentLang === 'es' ? 'English' : 'Español';
             
+            const statusText = document.getElementById('season-status-text');
+            if (statusText) {
+                if (isHighSeason) {
+                    statusText.innerText = currentLang === 'es' ? 'Temporada Alta' : 'High Season';
+                } else {
+                    statusText.innerText = currentLang === 'es' ? 'Temporada Baja' : 'Low Season';
+                }
+            }
+
             document.querySelectorAll('[data-es]').forEach(el => {
                 if (el.dataset[currentLang]) {
                     el.innerText = el.dataset[currentLang];
